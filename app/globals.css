@@ -7,6 +7,7 @@
   --foreground: #171717;
 
   --base-blue: rgb(59, 130, 246);
+  --rem: 16;
 }
 
 * {
@@ -39,6 +40,8 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  gap: 32px;
 }
 
 .input-parent-section {
@@ -119,4 +122,31 @@ main {
   display: flex;
   flex-direction: row;
   gap: 8px;
+}
+
+/* Pitch Item */
+.pitch-item-parent-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  max-width: 48rem;
+  width: 100%;
+
+  line-height: 1.1;
+}
+
+.pitch-item-inner-container {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+}
+
+.pitch-item-topheader {
+
+}
+
+.pitch-item-kanji-reading {
+  font-size: 2em;
 }

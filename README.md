@@ -3,6 +3,9 @@
 #### Description:
 TODO
 - Create a component that visualizes the pitch accent, and all other information, pass in the result
+- Visualize the pitch by using a grid with cells, each character uses 4? cells, the pitch is placed on the grid's lines
+- Have a toggle for different pitches of more than 1 exists
+- Add so if there are multiple words in the search such as: 魔法少女 魔法 and 少女 would be found
 - [CTRL + K] to go to the search bar
 - Add attribution for the dictionaries (look at [jisho.org front page](https://jisho.org/search/%20%23kanji))
 
