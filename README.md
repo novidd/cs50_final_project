@@ -3,10 +3,15 @@
 #### Description:
 TODO
 - Create a component that visualizes the pitch accent, and all other information, pass in the result
-- Visualize the pitch by using a grid with cells, each character uses 4? cells, the pitch is placed on the grid's lines
+- Use cells in a grid, one cell per world, place the pitch line at edges of cell (top / bottom) - [X]
+- Add a link to Jisho.org for the word's meaning use the URL + query + the word as a link
 - Have a toggle for different pitches of more than 1 exists
-- Add so if there are multiple words in the search such as: 魔法少女 魔法 and 少女 would be found
+
 - [CTRL + K] to go to the search bar
+- Add so if there are multiple words in the search such as: 魔法少女 魔法 and 少女 would be found
+- Add JLPT level for the word
+- Add audio sample?
+- Add recommendation to use Yomichan extension is not already using it to get audio samples
 - Add attribution for the dictionaries (look at [jisho.org front page](https://jisho.org/search/%20%23kanji))
 
 <!-- This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).

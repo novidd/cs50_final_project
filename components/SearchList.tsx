@@ -14,9 +14,6 @@ const SearchList = async ({ query }:{query: string}) => {
       // console.log(stringArr)
       return stringArr;
     }
-    else {
-      // result = ["Empty", "Empty", "Empty"]
-    }
 });
 
 
