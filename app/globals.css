@@ -3,14 +3,26 @@
 @tailwind utilities;
 
 :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    /* BASE */
+    --background: white;
+    --foreground: black;
 
+    /* COLOR THEME */
     --base-blue: rgb(59, 130, 246);
     --base-blue-low-opacity: rgba(59, 130, 246, 0.35);
-    --rem: 16;
 
-     /* PITCH */
+    /* TEXT */
+    --rem: 16;
+    --grey-text: #eee;
+
+    /* GRID */
+    --grid-color: #ffffff3a;
+
+    /* TAG */
+    --tag-dictionary-background-color: #6640be;
+
+    /* PITCH */
+    --pitch-line-color: grey;
     --pitch-line-width: 1px;
 }
 
@@ -21,45 +33,51 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background: #0a0a0a;
+        --background: rgb(15, 23, 42);
+        --background-alt: #2a2a2a;
         --foreground: #ededed;
     }
 }
 
 body {
-    color: var(--foreground);
-    background: var(--background);
     font-family: Arial, Helvetica, sans-serif;
 
     /* background-color: white; */
-    background-color: rgb(15, 23, 42);
+    background-color: var(--background);
     color: white;
+
+    display: flex;
+    justify-content: center;
 }
 
 main {
-    width: 100vw;
-    height: 100vh;
+    max-width: 62.5rem;
+    width: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
 
-    gap: 32px;
+    /* gap: 20px; */
 
     padding: 16px;
 }
 
-.input-parent-section {
+header {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    align-items: start;
 
-    max-width: 62.5rem;
-    width: 100%;
+    margin-bottom: 20px;
 }
+
+/* INPUT FORM */
+
+.input-form-container {
+    margin: 4px 0 24px 0;
+}
+
+/* OLD INPUT FORM */
 
 #input-search-container {
     /* position: relative; */
@@ -130,17 +148,225 @@ main {
     gap: 8px;
 }
 
-/* Pitch Item */
 .pitch-item-parent-container {
     display: flex;
     flex-direction: column;
     gap: 16px;
 
-    max-width: 48rem;
+    max-width: 62.5rem;
     width: 100%;
 
     line-height: 1.1;
 }
+
+.pitch-item-parent-container > h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+/* WORD DATA */
+
+.word-parent-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    justify-content: start;
+    align-content: start;
+
+    padding-bottom: 32px;
+
+    border-bottom: 1px gray solid;
+}
+
+.word-info-container {
+    display: flex;
+    flex-direction: column;
+
+    /* background: red; */
+
+    width: 200px;
+}
+
+.word-readings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    margin-bottom: 12px;
+}
+
+.word-readings-container .furigana {
+    font-size: 14px;
+}
+
+.word-readings-container .text {
+    font-size: 32px;
+}
+
+.word-attributes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tag {
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+
+    text-transform: lowercase;
+    color: white;
+
+    padding: 2px 5px 3px 5px;
+    border-radius: 3px;
+}
+
+.word-attribute-item {
+    color: #222;
+
+    width: 100px;
+
+}
+
+.word-attribute-item-common-word {
+    background: #8abc83;
+}
+
+.word-attribute-jlpt {
+    background-color: #909dc0;
+}
+
+.word-attribute-link {
+    font-size: 14px;
+    color: #9cbedf;
+    text-decoration: underline;
+}
+
+/* PITCH DATA */
+
+.word-pitch-data-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+
+    /* padding-left: 8px; */
+
+    /* border-left: 1px solid grey; */
+}
+
+.word-pitch-container {
+    list-style: decimal;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: start;
+
+    gap: 10px;
+}
+
+.word-pitch-container li {
+}
+
+.word-pitch-type-header {
+    font-size: 16px;
+    font-weight: bold;
+
+    color: var(--grey-text);
+}
+
+.word-pitch-data-dictionary {
+    font-size: 10px;
+    font-weight: bold;
+
+    height: 18px;
+
+    background-color: var(--tag-dictionary-background-color);
+}
+
+.word-characters-data {
+    color: var(--grey-text)
+}
+
+.word-pitch-data-button:hover {
+    cursor: pointer;
+}
+
+/* PITCH VIZUALIZER */
+.word-pitch-data-result-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    width: 100%;
+}
+
+.pitch-vizualizer-container {
+    height: 100%;
+
+    padding-left: 24px;
+}
+
+.pitch-vizualizer-characters-container {
+    /* display: grid;
+    grid-template-columns: repeat(3, 60px);
+    max-width: calc((60 * 3px + 1px)); */
+
+    display: flex;
+    gap: 4px;
+
+    height: 32px;
+    padding-bottom: 0;
+
+    /* background-size: 60px 31px;
+    background-image:
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px); */
+}
+
+.pitch-vizualizer-characters-container > span {
+    position: relative;
+
+    /* TOGGLE THE GRID BY MAKING COLOR TRANSPARENT */
+    border-bottom: var(--grid-color) solid 1px;
+
+    min-height: 36px;
+    max-height: 36px;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 28px;
+
+    color: rgba(255, 255, 255, 0.35);
+}
+
+/* PITCH LINE VISUALS */
+.pitch-line-top::before {
+    content: "";
+    background: var(--pitch-line-color);
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    height: var(--pitch-line-width);
+    width: 58px;
+}
+
+.pitch-line-tail:after {
+    content: "";
+    background: var(--pitch-line-color);
+    position: absolute;
+    top: 0;
+    right: -1px;
+    height: 35%;
+    width: var(--pitch-line-width);
+}
+
+/* OLD CSS */
 
 .pitch-item-inner-container {
     display: flex;
@@ -169,7 +395,7 @@ main {
     font-size: 2em;
 }
 
-/* GRID */
+/* OLD GRID */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 40px);
@@ -203,25 +429,4 @@ main {
     /* font-weight: 600; */
 
     color: rgba(255, 255, 255, 0.35);
-}
-
-/* PITCH VISUALS */
-.pitch-line-top::before {
-    content: "";
-    background: var(--base-blue);
-    position: absolute;
-    top: -1px;
-    right: -1px;
-    height: var(--pitch-line-width);
-    width: 80px;
-}
-
-.pitch-line-tail:after {
-    content: "";
-    background: var(--base-blue);
-    position: absolute;
-    top: 0;
-    right: -1px;
-    height: 35%;
-    width: var(--pitch-line-width);
 }

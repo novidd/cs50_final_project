@@ -33,6 +33,10 @@ const PitchItem = ({ kanji, furigana, pitch }: { kanji: string, furigana: string
         <div key={kanji} className="pitch-item-inner-container">
             <div className="pitch-item-topheader">
 
+                {/* <a target="_blank" href={`https://jisho.org/search/${kanji}`}>Search Jisho for{kanji}</a> */}
+
+                <span>Kanjium Pitch Accents </span>
+
                 {kanji} - {/*pitchHTML*/}
 
             </div>
