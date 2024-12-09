@@ -8,9 +8,12 @@ const PitchItem = ({ kanji, furigana, pitch }: { kanji: string, furigana: string
     const regex = /しょ|じょ|りょ|にょ|ちょ|[^しょじょりょにょ]/g;
 
     // Split the word into individual letters according to regex
-    const furiganaArray = furigana?.match(regex);
+    // console.log(furigana);
 
-    // console.log(furiganaArray);
+    // This checks if the furigana is empty then use the kanji instead
+    const textToUse = furigana == "" ? kanji : furigana;
+
+    const furiganaArray = textToUse?.match(regex);
 
     if (!furiganaArray) return;
 
@@ -19,8 +22,9 @@ const PitchItem = ({ kanji, furigana, pitch }: { kanji: string, furigana: string
 
     // Dynamically set the amount of columns in the grid depending on the word length (one column per letter)
     const gridInlineCss = {
-        gridTemplateColumns: `repeat(${furigana?.length}, 80px)`,
+        gridTemplateColumns: `repeat(${textToUse?.length}, 80px)`,
     }
+
 
     // Construct the html and styling here, then insert it in the within the return block
     const outputHTML = CreatePitchHTML(furiganaArray, pitch);
@@ -48,6 +52,7 @@ function CreatePitchTypeHTML(pitch: string[]) {
 
     // Add cases for different pitches such as: (副)(感)(名)(形動)
     // Adverb, Interjection, Noun, Adjectival Noun
+    // Ask ChatGPT how to divide these values, for example: ちょいと		(副)0,1,(感)1
 
 
     // Get pitch type (if pitch >= 3 => pitch = 3 = 尾高)

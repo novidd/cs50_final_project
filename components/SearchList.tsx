@@ -8,9 +8,10 @@ const SearchList = async ({ query }: { query: string }) => {
     const filteredPitches = formatLines.filter(item => {
         const stringArr = item.split("\t");
 
+        
         // If the input is found in the accents either Onyomi or the Kunyomi reading, add to results
         // There can be multiple results of different words that have the same reading (homonym), but potentially different pitch accents
-        if ((query == stringArr[0] || query == stringArr[1]) && stringArr[1] != "") {
+        if ((query == stringArr[0] || query == stringArr[1])) {
             // console.log(stringArr)
             return stringArr;
         }
