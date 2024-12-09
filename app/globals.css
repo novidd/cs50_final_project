@@ -353,7 +353,7 @@ header {
     top: -1px;
     right: -1px;
     height: var(--pitch-line-width);
-    width: 58px;
+    width: 100%
 }
 
 .pitch-line-tail:after {
