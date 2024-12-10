@@ -1,4 +1,3 @@
-// import Image from "next/image";
 import * as React from 'react'
 
 import SearchPitches from "@/components/SearchPitches";
@@ -11,7 +10,6 @@ const Home = ({
         query?: string;
     };
 }) => {
-    // const query = searchParams?.query || '';
 
     const { query } = React.use(searchParams);
 
@@ -25,30 +23,14 @@ const Home = ({
 
             <SearchPitches />
             <SearchList query={query} />
+
+            <footer className='text-center pt-4 font-bold text-xs text-gray-500'>
+                Made by Lucas Pettersson
+                <br />
+                This has been CS50.
+            </footer>
         </main>
     );
 }
-
-// <section>What is a pitch accent?</section>
-// <section id="">How was this made?</section>
-
-// <section className="section">ACTIONS: Randomize a word(s)</section>
-
-// <section className="section input-parent-section">
-// </section>
-
-// return (
-//   <form action={FormAction} id="search-form">
-//   <div id="input-search-container">
-//     {/* SEARCH ICON */}
-//     <input id="accent-search-input" type="text" name="search" autoComplete="off" autoFocus placeholder="Japanese, Romaji..." required/>
-//     <span id="input-search-shortcut-container">
-//       <span id="input-search-shortcut">Ctrl</span>
-//       <span id="input-search-shortcut">K</span>
-//     </span>
-//   </div>
-//   <button type="submit" id="accent-search-button">Search</button>
-// </form>
-// );
 
 export default Home;
