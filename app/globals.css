@@ -20,6 +20,7 @@
 
     /* TAG */
     --tag-dictionary-background-color: #6640be;
+    --tag-type-background-color: rgb(75, 75, 75);
 
     /* PITCH */
     --pitch-line-color: grey;
@@ -264,10 +265,7 @@ header {
 
     justify-content: start;
 
-    gap: 10px;
-}
-
-.word-pitch-container li {
+    gap: 12px;
 }
 
 .word-pitch-type-header {
@@ -277,6 +275,12 @@ header {
     color: var(--grey-text);
 }
 
+.tags-container {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
 .word-pitch-data-dictionary {
     font-size: 10px;
     font-weight: bold;
@@ -284,6 +288,15 @@ header {
     height: 18px;
 
     background-color: var(--tag-dictionary-background-color);
+}
+
+.word-pitch-data-type {
+    font-size: 10px;
+    font-weight: bold;
+
+    height: 18px;
+
+    background-color: var(--tag-type-background-color);
 }
 
 .word-characters-data {
@@ -298,7 +311,7 @@ header {
 .word-pitch-data-result-list {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 32px;
 
     width: 100%;
 }

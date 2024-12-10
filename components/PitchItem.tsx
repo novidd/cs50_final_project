@@ -1,12 +1,9 @@
-import { pitches_types } from "@/app/data/pitch_data";
-import Image from 'next/image'
+// import Image from 'next/image'
 
-// Two arrays (ENG + JAP) for the names of all the types of pitch accents such as ()
-
-const PitchItem = ({ kanji, furigana, pitch }: { kanji: string, furigana: string, pitch: Array<string> }) => {
+const PitchItem = ({ kanji, furigana, pitch }: { kanji: string, furigana: string, pitch: string }) => {
 
     // Define a regular expression to match special Hiragana combinations and individual characters
-    const regex = /しょ|じょ|りょ|にょ|ちょ|./g;
+    const regex = /しょ|じょ|りょ|にょ|ちょ|ちゃ|./g;
     
     // This checks if the furigana is empty then use the kanji instead
     const textToUse = furigana == "" ? kanji : furigana;
@@ -16,9 +13,10 @@ const PitchItem = ({ kanji, furigana, pitch }: { kanji: string, furigana: string
 
     if (!furiganaArray) return;
 
-    // ADD HERE TO FILTER THE PITCH TO ACCESS IF ADVERB, NOUN, OR INTERJECTION
+    // Filter the pitch, returns a an object with word type(s) and pitches if available, otherwise only an array of pitches
+    const filteredPitch = parseInput(pitch);
 
-    const pitchItemHTML = CreatePitchItem(furiganaArray, textToUse, pitch);
+    const pitchItemHTML = CreatePitchItem(furiganaArray, textToUse, filteredPitch);
 
     return (
         <div className='word-parent-container'>
@@ -31,8 +29,8 @@ const PitchItem = ({ kanji, furigana, pitch }: { kanji: string, furigana: string
                 </div>
 
                 <div className='word-attributes'>
-                    {/* <div className='tag word-attribute-item word-attribute-item-common-word'>common word</div> */}
-                    {/* <div className='tag word-attribute-item word-attribute-jlpt'>jlpt n3</div> */}
+                    <div className='tag word-attribute-item word-attribute-item-common-word'>common word</div>
+                    <div className='tag word-attribute-item word-attribute-jlpt'>jlpt nX</div>
                     <a className='word-attribute-link' target="_blank" href={`https://jisho.org/search/${kanji}`}>Search Jisho for {kanji}</a>
                 </div>
 
@@ -51,51 +49,60 @@ const PitchItem = ({ kanji, furigana, pitch }: { kanji: string, furigana: string
 
 export default PitchItem
 
-// function CreatePitchTypeHTML(pitch: string[]) {
-//     const commaPitchItemEnd = pitch?.length > 1 ? ", " : "";
-
-//     // Add cases for different pitches such as: (副)(感)(名)(形動)
-//     // Adverb, Interjection, Noun, Adjectival Noun
-//     // Ask ChatGPT how to divide these values, for example: ちょいと		(副)0,1,(感)1
-
-
-//     // Get pitch type (if pitch >= 3 => pitch = 3 = 尾高)
-//     const pitchHTML = pitch?.map((object, i) => {
-
-//         let pitchType;
-
-//         if (Number(object) > 3) {
-//             pitchType = pitches_types[3];
-//         }
-//         else {
-//             console.log(pitch)
-//                 pitchType = pitches_types[object];
-//         }
-
-//         return <span className="pl-1" key={i}>{pitchType["jp_kanji"]} ({pitchType["eng"]}){commaPitchItemEnd}</span>
-//     });
-
-//     return pitchHTML;
-// }
-
-function CreatePitchItem(furiganaArray: string[], furigana: string, pitch: string[])
+function CreatePitchItem(furiganaArray: string[], furigana: string, pitch: object | string[])
 {
     let itemCount = 0;
+    const pitchArray: string[] = [];
+    const pitchTypeArray: string[] = [];
 
-    return pitch?.map((pitchItem) => {
+    // If array input ==> without type tags
+    if (Array.isArray(pitch)) {
+        pitch?.map((object) => {
+            pitchTypeArray.push("");
+            pitchArray.push(object);
+        })
+    }
+    // If object input ==> with type tags
+    else if (typeof pitch === "object" && pitch !== null) {
+        for (const [type, values] of Object.entries(pitch)) {
+            if (values.length > 0)
+            {
+                values?.map((item: string) => {
+                    pitchTypeArray.push(type);
+                    pitchArray.push(item);
+                })
+
+            }
+        }
+    }
+
+    return pitchArray?.map((pitchItem: string, i) => {
         
+        itemCount++;
+
         const pitchVisualHTML = CreatePitchVisualAlgorithm(furiganaArray, pitchItem);
 
-        itemCount++;
+        // Get the type tag in english
+        const pitchTypeTagEng = pitchTypeArray[i] == "感" ? "int" 
+            : pitchTypeArray[i] == "副" ? "adv"
+            : pitchTypeArray[i] == "名" ? "noun" 
+            : pitchTypeArray[i] == "形動" ? "adj-na": "";
+
+        // Get the type tag html
+        const pitchTypeTag = pitchTypeArray[i] == "" ? "" : <span className='tag word-pitch-data-type'>{}{pitchTypeArray[i]}.{pitchTypeTagEng}</span>;
 
         return (
             <>
-                <div className='word-pitch-container'>
+                <div key={pitchItem} className='word-pitch-container'>
+
                     <div className='word-pitch-data-container'>
                         <span className='pr-2'>{itemCount}.</span>
-                        <span className='tag word-pitch-data-dictionary'>Kanjium Pitch Accents</span>
+                        <span className="tags-container">
+                            <span className='tag word-pitch-data-dictionary'>Kanjium Pitch Accents</span>
+                            {pitchTypeTag}
+                        </span>
                         <span className='word-characters-data'>
-                            <span>{/*girl (usu. between 7 and 17); young lady*/}​【{furigana}】</span>
+                            <span>​【{furigana}】</span>
                             <span>[{pitchItem}]</span>
                         </span>
                         {/* <Image
@@ -112,11 +119,44 @@ function CreatePitchItem(furiganaArray: string[], furigana: string, pitch: strin
                             {pitchVisualHTML}
                         </span>
                     </div>
+
                 </div>
             </>
         )
     });
 }
+
+const parseInput = (input: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const types = ["名", "形動", "感", "副"];
+    type TypeKey = typeof types[number]; // "名" | "形動" | "感" | "副"
+
+    const result: Record<TypeKey, string[]> = {
+        名: [],
+        形動: [],
+        感: [],
+        副: []
+    };
+
+    const regex = /\((名|形動|感|副)\)([0-9,]*)/g;
+
+    let match: RegExpExecArray | null;
+    while ((match = regex.exec(input)) !== null) {
+        const type = match[1] as TypeKey; // Explicitly cast match[1] to TypeKey
+        const values = match[2].split(",").filter(v => v.trim() !== "");
+        result[type].push(...values);
+    }
+
+    const hasTypes = Object.values(result).some(values => values.length > 0);
+    if (!hasTypes) {
+        const numericRegex = /^[0-9,]+$/;
+        if (numericRegex.test(input)) {
+            return input.split(",").map(v => v.trim()).filter(v => v !== "");
+        }
+    }
+
+    return result;
+};
 
 function CreatePitchVisualAlgorithm(furiganaArray: string[], pitch: string) {
     let outputHTML;

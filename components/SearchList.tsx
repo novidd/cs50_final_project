@@ -18,7 +18,7 @@ const SearchList = async ({ query }: { query: string }) => {
             <h1>Words</h1>
 
             {filteredPitches.map((item) => (
-                <PitchItem key={item} kanji={item.split("\t")[0]} furigana={item.split("\t")[1]} pitch={item.split("\t")[2]?.split(",")} />
+                <PitchItem key={item} kanji={item.split("\t")[0]} furigana={item.split("\t")[1]} pitch={item.split("\t")[2]} />
             ))}
 
         </div>
