@@ -16,20 +16,26 @@ const Home = ({
     // Add darkmode state here
 
     return (
-        <main>
-            <header>
-                <h1 className='text-5xl'>Japanese (Dict)Pitchionary</h1>
-            </header>
+        <div className="w-[100%] flex justify-start items-center flex-col">
+            <div className="pitches-pattern"></div>
+            <main>
+                <header>
+                    <h1 className='text-4xl'>Japanese (Dict)Pitchionary</h1>
+                </header>
 
-            <SearchPitches />
-            <SearchList query={query} />
+                <SearchPitches />
+                <SearchList query={query} />
 
-            <footer className='text-center pt-4 font-bold text-xs text-gray-500'>
-                Made by Lucas Pettersson
-                <br />
-                This has been CS50.
-            </footer>
-        </main>
+                <footer className='text-center font-bold text-xs text-gray-500'>
+                    <div>
+                        Made by Lucas Pettersson
+                        <br />
+                        This has been CS50.
+                    </div>
+                    <div className="pitches-pattern mt-4"></div>
+                </footer>
+            </main>
+        </div>
     );
 }
 

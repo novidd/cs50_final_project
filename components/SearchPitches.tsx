@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+
 // Check if there are multiple words in the search such as: 魔法少女 魔法 and 少女 would be found
 
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
@@ -21,12 +23,17 @@ const SearchPitches = () => {
 
     return (
         <div className="input-form-container relative flex max-w-[62.5rem] w-[100%] flex-row justify-center">
-            <label htmlFor="search" className="sr-only">
-                Search
-            </label>
+            <div className="flex justify-center items-center">
+                <Image
+                    src="/search_icon.png"
+                    width={24}
+                    height={24}
+                    alt="search"
+                />
+            </div>
             <input
-                className=" peer block w-[100%] h-12 rounded-md border border-gray-200 py-[9px] pl-10 text-2xl outline-2 placeholder:text-gray-500 text-black"
-                placeholder="Japanese, Romaji"
+                className="search-input-field peer block w-[100%] h-12 rounded-md border border-gray-200 py-[9px] pl-2 text-2xl outline-2 text-black"
+                placeholder="Japanese (Hiragana, Kanji)"
                 type="text"
                 autoComplete="off"
                 defaultValue={searchParams.get("query")?.toString()}
@@ -39,8 +46,6 @@ const SearchPitches = () => {
 }
 
 export default SearchPitches
-
-
 
 // export default function SearchPitches() {
 //   return (
