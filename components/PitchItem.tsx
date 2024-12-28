@@ -29,8 +29,8 @@ const PitchItem = ({ kanji, furigana, pitch }: { kanji: string, furigana: string
                 </div>
 
                 <div className='word-attributes'>
-                    <div className='tag word-attribute-item word-attribute-item-common-word'>common word</div>
-                    <div className='tag word-attribute-item word-attribute-jlpt'>jlpt nX</div>
+                    {/* <div className='tag word-attribute-item word-attribute-item-common-word'>common word</div>
+                    <div className='tag word-attribute-item word-attribute-jlpt'>jlpt nX</div> */}
                     <a className='word-attribute-link' target="_blank" href={`https://jisho.org/search/${kanji}`}>Search Jisho for {kanji}</a>
                 </div>
 
