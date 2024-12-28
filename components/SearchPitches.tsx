@@ -2,8 +2,6 @@
 
 import Image from 'next/image'
 
-// Check if there are multiple words in the search such as: 魔法少女 魔法 and 少女 would be found
-
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 const SearchPitches = () => {
