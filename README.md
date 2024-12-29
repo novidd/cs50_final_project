@@ -1,5 +1,5 @@
 # Japanese Pitch Accent Dictionary
-#### Video Demo:  <URL HERE>
+#### Video Demo:  [CS50 Final Project](https://youtu.be/BZkWYrwSFjM)
 
 ## Introduction
 ![front page](./readme/image-1.png)
