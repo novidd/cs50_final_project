@@ -188,6 +188,7 @@ function CreatePitchItem(furiganaArray: string[], furigana: string, pitch: objec
 ##### Pitch Visualization Algorithm
 <!-- ![pitch visualization algorithm](./readme/pitch_algo.png) -->
 The image below is my first notes on how the pitch works. Each ``x`` is a character in a ``string`` where ``[]`` is the notation for the pitch type.
+
 <img src="./readme/pitch_algo.png" width="600"/>
 
 Below, the algorithm ``CreatePitchVisualAlgorithm`` is the code translated from the notes above:
