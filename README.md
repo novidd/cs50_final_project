@@ -29,9 +29,7 @@ I decided to use **React** to create components with **Next.js** to handle the c
 Write about layout.tsx and page.tsx.
 The site uses only one page, even so a root ``layout.tsx`` file is used for the template structure. Beyond, is a ``page.tsx`` used for placing the rest of the **React** components or base html that will always exist on the site, such as the header and footer content.
 
-Write about the components I use, PitchItem, SearchList, and SearchPitches, and what each one does.
-
-The code is divided into multiple components each having a specific job. ``PitchItem``, ``SearchList`` and ``SearchPitches```.
+The code is divided into multiple components each having a specific job. ``PitchItem``, ``SearchList`` and ``SearchPitches``.
 
 #### SearchPitches
 ``SearchPitches`` is a client component, meaning if you want to manipulate data or store states you would need a client component which in this case simply handles the input field. Using ``searchParams`` I pass a query as you type which you can see at the and of the web address ``?query=INPUT``. This way other components can access the user input.
@@ -41,7 +39,7 @@ The code is divided into multiple components each having a specific job. ``Pitch
 
 *(I did debate if I should use SQL as a database, but because the user cannot update the data I saw no need to do so and the data itself is not of a sensitive nature.)*
 
-Then I check if the input is either the kanji reading or hiragana/furigana reading. Then I pass the result to ``PitchItem`` which will then dynamically display it on screen.
+Check if the input is either the kanji reading or hiragana/furigana reading. Then pass the result to ``PitchItem`` which will then dynamically display it on screen.
 
 ##### Search Algorithm
 It's rather simple, by using the ``fs`` module's ``readFile`` method I get read the data and as below:
