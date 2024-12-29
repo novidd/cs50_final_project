@@ -18,7 +18,7 @@ The most convenient resource I found was the GitHub repository [kanjium](https:/
 `kanji | hiragana | pitch`
 - **kanji**: The word's reading with kanji,
 - **hiragana**: The syllable reading of the word,
-- **pitch**: Itemized with commas, for example, `4,2,1`. May have multiple pitches.
+- **pitch**: Itemized with commas, for example, `4,2,1`. May have multiple pitches. May contain tags such as 名 (noun), 形動 (na-adjective), 感 (interjection) and 副 (adverb).
 
 ## Implementation
 
