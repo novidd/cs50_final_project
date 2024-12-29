@@ -2,7 +2,7 @@
 #### Video Demo:  <URL HERE>
 
 ## Introduction
-![alt text](image-1.png)
+![front page](./readme/image-1.png)
 
 Upon deciding on this project, I merged two interests: Japanese and programming. Specifically, I decided to create a dictionary that visualizes the pitch for a certain word in the form of a website. The pitch is what the user wants to know, not the meaning of the word, so it is not included, but it can be accessed by a provided link to [jisho.org](https://jisho.org/), a powerful Japanese-English dictionary.
 
