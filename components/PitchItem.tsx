@@ -105,13 +105,6 @@ function CreatePitchItem(furiganaArray: string[], furigana: string, pitch: objec
                             <span>​【{furigana}】</span>
                             <span>[{pitchItem}]</span>
                         </span>
-                        {/* <Image
-                            className='ml-2 word-pitch-data-button'
-                            src="/audio_64x64.svg"
-                            width={20}
-                            height={20}
-                            alt="audio playback"
-                        /> */}
                     </div>
 
                     <div className='pitch-vizualizer-container'>
